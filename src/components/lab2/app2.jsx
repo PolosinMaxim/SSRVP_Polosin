@@ -5,16 +5,13 @@ import './App.css'
 import HiWorld from './components/button'
 import ButtonTrue from './components/button_true'
 import Container from './components/container'
-import MenuFucn from './components/menu'
-import LabThree from './components/lab3/lab3'
-import LabTwo from './components/lab2/lab2'
 
 function App() {
-  const [labNum, setLabNum] = useState(0)
+  const [count, setCount] = useState(0)
 
   return (
     <>
-      {/* <div className="card">
+      <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
@@ -27,11 +24,7 @@ function App() {
       </p>
       <HiWorld/>
       <ButtonTrue/>
-      <Container bttnSlot={<HiWorld/>}/> */}
-      <MenuFucn onSelect={setLabNum}/>
-      {labNum === 1 && <p>One</p>}
-      {labNum === 2 && <LabTwo/>}
-      {labNum === 3 && <LabThree/>}
+      <Container bttnSlot={<HiWorld/>}/>
     </>
   )
 }
