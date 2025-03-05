@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -8,12 +8,18 @@ import Container from './components/container'
 import MenuFucn from './components/menu'
 import LabThree from './components/lab3/lab3'
 import LabTwo from './components/lab2/lab2'
+import React from "react"
+import LabFour from './components/lab4/lab4'
 
+export const ThemeContext = React.createContext('light');
 function App() {
   const [labNum, setLabNum] = useState(0)
-
+  const [state2, setState2] = useState(0)
+  useEffect(() => alert("Does it work?"))
   return (
-    <>
+    <ThemeContext.Provider value={state2}>
+      <>
+      
       {/* <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
@@ -32,7 +38,12 @@ function App() {
       {labNum === 1 && <p>One</p>}
       {labNum === 2 && <LabTwo/>}
       {labNum === 3 && <LabThree/>}
+      {labNum === 4 && <LabFour/>}
+      <button onClick={() => setState2((param) => param == 0 ? 1 : 0)}>
+        Theme style
+      </button>
     </>
+    </ThemeContext.Provider>
   )
 }
 
