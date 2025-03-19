@@ -15,47 +15,52 @@ import LabFour3 from './components/lab4/lab43'
 import LabFive from './components/lab5/lab5'
 import {BrowserRouter, Routes, Route} from 'react-router'
 import { useForm } from 'react-hook-form';
+import LabFiveLogOut from './components/lab5/logout'
 
 export const ThemeContext = React.createContext('light');
+export const LogicContext = React.createContext(false);
 function App() {
   const [labNum, setLabNum] = useState(0)
   const [state2, setState2] = useState(0)
   
   /*useEffect(() => alert("Does it work?"))*/
   return (
-    <ThemeContext.Provider value={state2}>
-      <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LabFour2/>} />
-          <Route path="/a" element={<LabFour3/>} />
-        </Routes>
-      </BrowserRouter>
-      {/* <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
+    <LogicContext.Provider >
+      <ThemeContext.Provider value={state2}>
+        <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LabFour2/>} />
+            <Route path="/a" element={<LabFour3/>} />
+          </Routes>
+        </BrowserRouter>
+        {/* <div className="card">
+          <button onClick={() => setCount((count) => count + 1)}>
+            count is {count}
+          </button>
+          <p>
+            Edit <code>src/App.jsx</code> and save to test HMR
+          </p>
+        </div>
+        <p className="read-the-docs">
+          Click on the Vite and React logos to learn more
         </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-      <HiWorld/>
-      <ButtonTrue/>
-      <Container bttnSlot={<HiWorld/>}/> */}
-      <MenuFucn onSelect={setLabNum}/>
-      {labNum === 1 && <p>One</p>}
-      {labNum === 2 && <LabTwo/>}
-      {labNum === 3 && <LabThree/>}
-      {labNum === 4 && <LabFour/>}
-      {labNum === 5 && <LabFive/>}
-      <button onClick={() => setState2((param) => param == 0 ? 1 : 0)}>
-        Theme style
-      </button>
-    </>
-    </ThemeContext.Provider>
+        <HiWorld/>
+        <ButtonTrue/>
+        <Container bttnSlot={<HiWorld/>}/> */}
+        <MenuFucn onSelect={setLabNum}/>
+        {labNum === 1 && <p>One</p>}
+        {labNum === 2 && <LabTwo/>}
+        {labNum === 3 && <LabThree/>}
+        {labNum === 4 && <LabFour/>}
+        {labNum === 5 && <LabFive/>}
+        <button onClick={() => setState2((param) => param == 0 ? 1 : 0)}>
+          Theme style
+        </button>
+        <LabFiveLogOut firstName={'Maxim'} lastName={'Polosin'} age={'21'} logOutFunc={() => console.log('Placeolder')}/>
+        </>
+      </ThemeContext.Provider>
+    </LogicContext.Provider>
   )
 }
 

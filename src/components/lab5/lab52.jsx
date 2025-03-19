@@ -1,9 +1,6 @@
 import React, {useContext} from "react";
 import { ThemeContext } from "../../App";
 import { useForm } from 'react-hook-form';
-function KakoeNibud() {
-
-}
 function LabFive2() {
     const theme = useContext(ThemeContext);
     const {
