@@ -16,6 +16,7 @@ import LabFive from './components/lab5/lab5'
 import {BrowserRouter, Routes, Route} from 'react-router'
 import { useForm } from 'react-hook-form';
 import LabFiveLogOut from './components/lab5/logout'
+import LogState from './components/lab5/logicstate'
 
 export const ThemeContext = React.createContext('light');
 export const LogicContext = React.createContext(false);
@@ -25,7 +26,6 @@ function App() {
   
   /*useEffect(() => alert("Does it work?"))*/
   return (
-    <LogicContext.Provider >
       <ThemeContext.Provider value={state2}>
         <>
         <BrowserRouter>
@@ -60,7 +60,6 @@ function App() {
         <LabFiveLogOut firstName={'Maxim'} lastName={'Polosin'} age={'21'} logOutFunc={() => console.log('Placeolder')}/>
         </>
       </ThemeContext.Provider>
-    </LogicContext.Provider>
   )
 }
 
