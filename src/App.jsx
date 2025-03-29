@@ -15,8 +15,10 @@ import LabFour3 from './components/lab4/lab43'
 import LabFive from './components/lab5/lab5'
 import {BrowserRouter, Routes, Route} from 'react-router'
 import { useForm } from 'react-hook-form';
-import LabFiveLogOut from './components/lab5/logout'
+import LabSix from './components/lab6/lab6'
 import LogState from './components/lab5/logicstate'
+import LabSeven from './components/lab7/lab7'
+import Header from './components/header'
 
 export const ThemeContext = React.createContext('light');
 export const LogicContext = React.createContext(false);
@@ -48,16 +50,19 @@ function App() {
         <HiWorld/>
         <ButtonTrue/>
         <Container bttnSlot={<HiWorld/>}/> */}
+        <Header/>
         <MenuFucn onSelect={setLabNum}/>
         {labNum === 1 && <p>One</p>}
         {labNum === 2 && <LabTwo/>}
         {labNum === 3 && <LabThree/>}
         {labNum === 4 && <LabFour/>}
         {labNum === 5 && <LabFive/>}
+        {labNum === 6 && <LabSix/>}
+        {labNum === 7 && <LabSeven/>}
         <button onClick={() => setState2((param) => param == 0 ? 1 : 0)}>
           Theme style
         </button>
-        <LabFiveLogOut firstName={'Maxim'} lastName={'Polosin'} age={'21'} logOutFunc={() => console.log('Placeolder')}/>
+        
         </>
       </ThemeContext.Provider>
   )

@@ -5,6 +5,7 @@ import LabFive2 from './lab52'
 import LabFive3 from './lab53'
 import LogState from "./logicstate";
 import { LogicContext } from "../../App";
+import LabFiveLogOut from './logout'
 
 
 function FormFive() {
@@ -31,8 +32,10 @@ function LabFive() {
     
     return (
         <>
-            <LogState content={[<LabFive2></LabFive2>, <LabFive3></LabFive3>]}>
+            <LogState content={[<LabFive2></LabFive2>, <LabFive3></LabFive3>,
+        <LabFiveLogOut firstName={'Maxim'} lastName={'Polosin'} age={'21'}/>]}>
                 <FormFive/>
+                
             </LogState>
             
         </>
