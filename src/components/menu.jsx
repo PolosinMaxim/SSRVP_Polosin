@@ -9,6 +9,7 @@ function MenuFucn({onSelect}) {
         <button onClick={() => onSelect(5)}>Lab5</button>
         <button onClick={() => onSelect(6)}>Lab6</button>
         <button onClick={() => onSelect(7)}>Lab7</button>
+        <button onClick={() => onSelect(8)}>Lab8</button>
     </div>
 }
 export default MenuFucn;

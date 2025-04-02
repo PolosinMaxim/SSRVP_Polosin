@@ -21,12 +21,13 @@ import LabSeven from './components/lab7/lab7'
 import Header from './components/header'
 import Button from "@mui/material/Button";
 import Drawer from "@mui/material/Drawer";
+import LabEight from './components/lab8/lab8'
 
 export const ThemeContext = React.createContext('light');
 export const LogicContext = React.createContext(false);
 function App() {
   const [labNum, setLabNum] = useState(0)
-  const [state2, setState2] = useState(0)
+  const [state2, setState2] = useState(true)
   const [drawpen, setDraw] = useState(true);
   
   /*useEffect(() => alert("Does it work?"))*/
@@ -54,8 +55,8 @@ function App() {
         <ButtonTrue/>
         <Container bttnSlot={<HiWorld/>}/> */}
         <Header/>
-        <Button onClick={() => setDraw((param) => param == true ? false : true)}>Open drawer</Button>
-            <Drawer open={drawpen} onClose={() => setDraw((param) => param == false ? true : false)}>
+        <Button onClick={() => setDraw((param) => !param)}>Open drawer</Button>
+            <Drawer open={drawpen} onClose={() => setDraw((param) => !param)}>
                 {<MenuFucn onSelect={setLabNum}/>}
             </Drawer>
         
@@ -66,7 +67,8 @@ function App() {
         {labNum === 5 && <LabFive/>}
         {labNum === 6 && <LabSix/>}
         {labNum === 7 && <LabSeven/>}
-        <button onClick={() => setState2((param) => param == 0 ? 1 : 0)}>
+        {labNum === 8 && <LabEight/>}
+        <button onClick={() => setState2((param) => !param)}>
           Theme style
         </button>
         
