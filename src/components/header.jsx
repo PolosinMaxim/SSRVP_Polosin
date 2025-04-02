@@ -6,11 +6,12 @@ import AboutSelf from "./self";
 
 function Header() {
     const [checked, setChecked] = React.useState(true);
-
+    
     return (
         <>
             <Switch checked={checked} onChange={() => setChecked((param) => param == true ? false : true)}/>
-            {checked === true && <AboutSelf/>}
+            {checked && <AboutSelf/>}
+            
         </>
     );
 }

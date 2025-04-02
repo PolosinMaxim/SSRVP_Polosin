@@ -19,12 +19,15 @@ import LabSix from './components/lab6/lab6'
 import LogState from './components/lab5/logicstate'
 import LabSeven from './components/lab7/lab7'
 import Header from './components/header'
+import Button from "@mui/material/Button";
+import Drawer from "@mui/material/Drawer";
 
 export const ThemeContext = React.createContext('light');
 export const LogicContext = React.createContext(false);
 function App() {
   const [labNum, setLabNum] = useState(0)
   const [state2, setState2] = useState(0)
+  const [drawpen, setDraw] = useState(true);
   
   /*useEffect(() => alert("Does it work?"))*/
   return (
@@ -51,7 +54,11 @@ function App() {
         <ButtonTrue/>
         <Container bttnSlot={<HiWorld/>}/> */}
         <Header/>
-        <MenuFucn onSelect={setLabNum}/>
+        <Button onClick={() => setDraw((param) => param == true ? false : true)}>Open drawer</Button>
+            <Drawer open={drawpen} onClose={() => setDraw((param) => param == false ? true : false)}>
+                {<MenuFucn onSelect={setLabNum}/>}
+            </Drawer>
+        
         {labNum === 1 && <p>One</p>}
         {labNum === 2 && <LabTwo/>}
         {labNum === 3 && <LabThree/>}
