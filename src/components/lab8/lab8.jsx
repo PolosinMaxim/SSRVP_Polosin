@@ -54,6 +54,7 @@ function LabEight() {
       cell: info => info.getValue(),
       footer: info => info.column.id,
       accessorKey: 'firstName', 
+      SortingFn: sortStatusFn,
     },
     {
       accessorFn: row => row.lastName,
@@ -103,8 +104,8 @@ function LabEight() {
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => (
-                <th key={header.id}>
+              {headerGroup.headers.map(header => ( //Invalid event handler property `onclick`. Did you mean `onClick`?
+                <th key={header.id} onClick={header.column.getToggleSortingHandler()}>
                   {header.isPlaceholder
                     ? null
                     : flexRender(
