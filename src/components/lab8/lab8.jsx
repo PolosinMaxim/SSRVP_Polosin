@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useMemo} from "react";
 import {styled} from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import {
@@ -36,40 +36,60 @@ import {
   ]
   
   const columnHelper = createColumnHelper()
-  
-  const columns = [
-    columnHelper.accessor('firstName', {
-      cell: info => info.getValue(),
-      footer: info => info.column.id,
-    }),
-    columnHelper.accessor(row => row.lastName, {
-      id: 'lastName',
-      cell: info => <i>{info.getValue()}</i>,
-      header: () => <span>Last Name</span>,
-      footer: info => info.column.id,
-    }),
-    columnHelper.accessor('age', {
-      header: () => 'Age',
-      cell: info => info.renderValue(),
-      footer: info => info.column.id,
-    }),
-    columnHelper.accessor('visits', {
-      header: () => <span>Visits</span>,
-      footer: info => info.column.id,
-    }),
-    columnHelper.accessor('status', {
-      header: 'Status',
-      footer: info => info.column.id,
-    }),
-    columnHelper.accessor('progress', {
-      header: 'Profile Progress',
-      footer: info => info.column.id,
-    }),
-  ]
+
+  const sortStatusFn = (rowA, rowB, _columnId) => {
+    const statusA = rowA.original.status
+    const statusB = rowB.original.status
+    const statusOrder = ['single', 'complicated', 'relationship']
+    return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB)
+  }
   
 function LabEight() {
     const [data, _setData] = React.useState(() => [...defaultData])
   const rerender = React.useReducer(() => ({}), {})[1]
+  const [sorting, setSorting] = useState([]) // can set initial sorting state here
+
+  const columns = useMemo (() => [
+    {
+      cell: info => info.getValue(),
+      footer: info => info.column.id,
+      accessorKey: 'firstName', 
+    },
+    {
+      accessorFn: row => row.lastName,
+      id: 'lastName',
+      cell: info => <i>{info.getValue()}</i>,
+      header: () => <span>Last Name</span>,
+      footer: info => info.column.id,
+      SortingFn: sortStatusFn,
+    },
+    {
+      accessorKey: 'age',
+      header: () => 'Age',
+      cell: info => info.renderValue(),
+      footer: info => info.column.id,
+      SortingFn: sortStatusFn,
+    },
+    {
+      accessorKey: 'visits',
+      header: () => <span>Visits</span>,
+      footer: info => info.column.id,
+      SortingFn: sortStatusFn,
+    },
+    {
+      accessorKey: 'status',
+      header: 'Status',
+      footer: info => info.column.id,
+      SortingFn: sortStatusFn,
+    },
+    {
+      accessorKey: 'progress',
+      header: 'Profile Progress',
+      footer: info => info.column.id,
+      SortingFn: sortStatusFn,
+    },
+  ], []
+)
 
   const table = useReactTable({
     data,
