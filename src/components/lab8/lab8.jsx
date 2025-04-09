@@ -45,7 +45,7 @@ import {
     const statusOrder = ['single', 'complicated', 'relationship', 'progress']
     return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB)
   }
-  const l_columns=['firstName', 'age', 'visits', 'status', 'lastName's]
+  const l_columns=['firstName', 'age', 'visits', 'status', 'lastName']
   
 function LabEight() {
     const [data, _setData] = React.useState(() => [...defaultData])
