@@ -5,8 +5,10 @@ import {
     createColumnHelper,
     flexRender,
     getCoreRowModel,
+    getSortedRowModel,
     useReactTable,
   } from '@tanstack/react-table'
+  import { faker } from '@faker-js/faker'
 
   const defaultData = [
     {
@@ -40,9 +42,10 @@ import {
   const sortStatusFn = (rowA, rowB, _columnId) => {
     const statusA = rowA.original.status
     const statusB = rowB.original.status
-    const statusOrder = ['single', 'complicated', 'relationship']
+    const statusOrder = ['single', 'complicated', 'relationship', 'progress']
     return statusOrder.indexOf(statusA) - statusOrder.indexOf(statusB)
   }
+  const l_columns=['firstName', 'age', 'visits', 'status', 'lastName's]
   
 function LabEight() {
     const [data, _setData] = React.useState(() => [...defaultData])
@@ -92,10 +95,21 @@ function LabEight() {
   ], []
 )
 
+  const [columndrag] = React.useState(() => [...columns])
+  const [columnVisibility, setColumnVisibility] = React.useState({})
+  const [columnOrder, setColumnOrder] = React.useState([])
+
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(), //client-side sorting
+    state: {
+      columnVisibility,
+      columnOrder,
+    },
+    onColumnVisibilityChange: setColumnVisibility,
+    onColumnOrderChange: setColumnOrder,
   })
 
   return (
@@ -104,7 +118,7 @@ function LabEight() {
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
             <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => ( //Invalid event handler property `onclick`. Did you mean `onClick`?
+              {headerGroup.headers.map(header => (
                 <th key={header.id} onClick={header.column.getToggleSortingHandler()}>
                   {header.isPlaceholder
                     ? null
@@ -148,6 +162,9 @@ function LabEight() {
       <div className="h-4" />
       <button onClick={() => rerender()} className="border p-2">
         Rerender
+      </button>
+      <button onClick={() => setColumnOrder(l_columns)}>
+        SetColumnOrder
       </button>
     </div>
   )
